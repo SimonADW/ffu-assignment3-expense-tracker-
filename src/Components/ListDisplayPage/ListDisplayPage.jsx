@@ -1,4 +1,5 @@
 import ListItem from "../ListItem/ListItem";
+import style from "./ListDisplayPage.module.css"
 
 export default function ListDisplayPage() {
 
@@ -11,7 +12,7 @@ export default function ListDisplayPage() {
 			<ListItem /> 
 		</ul>
 
-		<button>+</button>
+		<button className={style.addExpenseButton}>+</button>
 	</>
 
 

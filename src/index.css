@@ -1,4 +1,11 @@
 :root {
+  --background: #E5ECE9;
+  --foreground: black;
+  --color-primary: #D6D1CD;
+  --color-secondary: #969A97;
+  --color-button: #C60F7B;
+  --color-hover: #F90093;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -8,10 +15,17 @@
   box-sizing: border-box;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 button {
   background: #C60F7B;
+  border-style: none;
+  border-radius: 50%
 }
 
 ul {
   padding: 0;
 }
+
