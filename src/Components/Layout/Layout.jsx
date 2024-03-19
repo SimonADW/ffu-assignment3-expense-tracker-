@@ -9,8 +9,12 @@ export default function Layout({children}) {
 			<header>
 				<SumDisplay />
 			</header>
+			
+			<main>
 				{children}
-			<footer>
+			</main>
+
+			<footer className={styles.footer}>
 				2024 © SpendingFrenzy A/S
 			</footer>
 	</body>

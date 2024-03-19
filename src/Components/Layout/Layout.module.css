@@ -6,11 +6,24 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;	
-	/* align-items: center; */
+
 
 	margin: 0;
-	padding: 0.3rem;
+	padding: 1rem 0.3rem 0 0.3rem ;
+
 	background: var(--color-secondary);
+
+}
+
+.footer {
+	height: 3rem;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: center;
+	
+	background: var(--color-primary);
 
 }
 

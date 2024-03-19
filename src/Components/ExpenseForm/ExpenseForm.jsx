@@ -6,7 +6,7 @@ export default function ExpenseForm() {
 	return <>
 		<form className={styles.expenseForm} action="">
 		<button className={styles.closeFormButton}><img src={closeImage} alt="" /></button>
-			<legend>ADD EXPENSE</legend>
+			<legend><h3>ADD EXPENSE</h3></legend>
 				
 			<div>
 				<label htmlFor="amount" className={styles.amountLabel}>Expense amount</label>

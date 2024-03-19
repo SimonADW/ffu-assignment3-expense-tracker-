@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Layout>
-        <ExpenseForm />
+        {/* <ExpenseForm /> */}
         <ListDisplayPage />
       </Layout>
     </>
