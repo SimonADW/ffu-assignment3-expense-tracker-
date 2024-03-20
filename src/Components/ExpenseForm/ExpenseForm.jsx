@@ -1,11 +1,11 @@
 import styles from "./ExpenseForm.module.css"
 import closeImage from "../../assets/close.svg"
 
-export default function ExpenseForm() {
+export default function ExpenseForm({formStateSetter}) {
 
 	return <>
 		<form className={styles.expenseForm} action="">
-		<button className={styles.closeFormButton}><img src={closeImage} alt="" /></button>
+		<button onClick={()=>formStateSetter(false)} className={styles.closeFormButton}><img src={closeImage} alt="" /></button>
 			<legend><h3>ADD EXPENSE</h3></legend>
 				
 			<div>
