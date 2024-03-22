@@ -1,8 +1,8 @@
-import { Children } from "react";
 import SumDisplay from "../SumDisplay/SumDisplay";
 import styles from "./Layout.module.css"
 
-export default function Layout({children, formOpen}) {
+
+export default function Layout({children}) {
 
 	return (
 	<body className={styles.body}>

@@ -1,29 +1,36 @@
-import groceries from "../../assets/groceries.svg"
-import clothing from "../../assets/clothing.svg"
-import transportation from "../../assets/transportation.svg"
-import housing from "../../assets/housing.svg"
-import other from "../../assets/other.svg"
-import trash from "../../assets/trash.svg"
+// import groceries from "../../assets/groceries.svg"
+// import clothing from "../../assets/clothing.svg"
+// import transportation from "../../assets/transportation.svg"
+// import housing from "../../assets/housing.svg"
+// import other from "../../assets/other.svg"
+// import trash from "../../assets/trash.svg"
 
 import styles from "./ListItem.module.css"
 
 
-export default function ListItem() {
-	
+
+export default function ListItem({currentItem}) {
+	console.log(currentItem.category);
+
 
   return (
     <>
-      <li className={styles.listItem}>
+    {/* LEFT SECTION OF ITEM */}
+      <li className={styles.listItem} >
         <span className="liLeft">
           <span className="li__icon">
-		        <img className={styles.categoryIcon} src={groceries} alt="" />	
+		        <img className={styles.categoryIcon} src={`${currentItem.category}.svg`} alt="" />	
           </span>
-          <span className="li__date">03-19</span>
-          <span className="li__title">Groceries</span>
+
+          <span className="li__date">{currentItem.date}</span>
+
+          <span className="li__title">{currentItem.title}</span>
         </span>
 
+    {/* RIGHT SECTION OF ITEM */}
         <span>
-          <span>400,-</span>
+          <span>{currentItem.amount},-</span>
+
           <span>
             <button className={styles.deleteButton}>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="">
