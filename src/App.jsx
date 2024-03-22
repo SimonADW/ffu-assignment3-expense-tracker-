@@ -9,6 +9,7 @@ function App() {
 const [isFormOpen, setIsFormOpen] = useState(false);
 const [expenseArray, setExpenseArray] = useState(window.localStorage.getItem(JSON.stringify("expenses")) || [])
 const [totalSum, setTotalSum] = useState(0)
+const [daySum, setDaySum] = useState(0)
 
 const summarizeExpenses = ()=> {
   for(let expense of expenseArray ) {
@@ -17,7 +18,23 @@ const summarizeExpenses = ()=> {
 	}
 }
 
-useEffect(summarizeExpenses,[expenseArray])
+const getTodaysSpending = ()=> {
+
+  const dateObject = new Date();
+  const date = `${dateObject.getFullYear()}-${dateObject.getMonth() +1 }-${dateObject.getDate()}`
+  const todaysExpensesArray = expenseArray.filter((expense)=> date === expense.date)  
+
+  for(let expense of todaysExpensesArray) {
+    setDaySum(daySum + Number(expense.amount))
+  }
+
+}
+
+
+useEffect(()=> {
+  summarizeExpenses();
+  getTodaysSpending();
+},[expenseArray])
 
 const handleExpense = (newExpense)=> {
   setExpenseArray((prev) => [...prev, newExpense])
@@ -25,12 +42,9 @@ const handleExpense = (newExpense)=> {
   // window.localStorage.setItem("expenses", JSON.parse(expenseArray))
 }
 
-
-console.log(expenseArray);
-
   return (
     <>
-      <Layout totalSum={totalSum} >
+      <Layout totalSum={totalSum} daySum={daySum} >
         {isFormOpen 
         ? 
         <ExpenseForm expenses={expenseArray} handleExpense={handleExpense} formStateSetter={setIsFormOpen} handleSum={summarizeExpenses} />

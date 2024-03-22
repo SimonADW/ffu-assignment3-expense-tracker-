@@ -2,12 +2,12 @@ import SumDisplay from "../SumDisplay/SumDisplay";
 import styles from "./Layout.module.css"
 
 
-export default function Layout({children, totalSum}) {
+export default function Layout({children, totalSum, daySum}) {
 
 	return (
 	<body className={styles.body}>
 			<header>
-				<SumDisplay totalSum={totalSum} />
+				<SumDisplay totalSum={totalSum} daySum={daySum} />
 			</header>
 			
 			<main>
