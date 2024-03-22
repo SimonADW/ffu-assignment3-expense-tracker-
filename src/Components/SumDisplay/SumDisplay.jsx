@@ -1,7 +1,7 @@
 import styles from "./SumDisplay.module.css"
 
 
-export default function SumDisplay() {
+export default function SumDisplay({totalSum}) {
 
 
 	return <>
@@ -13,7 +13,7 @@ export default function SumDisplay() {
 
 			<div>
 				<div>Total spending</div>
-				<div className={styles.totalSum}>2400,-</div>
+				<div className={styles.totalSum}>{totalSum},-</div>
 			</div>
 		</section>
 	</>
