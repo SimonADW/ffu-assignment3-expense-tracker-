@@ -22,10 +22,15 @@ function App() {
   };
 
   const getTodaysSpending = () => {
+    // CREATE DATESTRING SAME FORMAT AS IN EXPENSE
     const dateObject = new Date();
-    const date = `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
-    const todaysExpensesArray = expenseArray.filter((expense) => date === expense.date);
-
+    const year = dateObject.getFullYear().toString();
+    const month = dateObject.getMonth() + 1;
+    const monthPadded = month.toString().padStart(2, 0)
+    const date = dateObject.getDate().toString();    
+    const dateString = `${year}-${monthPadded}-${date}`
+    
+    const todaysExpensesArray = expenseArray.filter((expense) => dateString === expense.getDate());
     let currentDaySum = 0
     for (let expense of todaysExpensesArray) {
       currentDaySum = currentDaySum + Number(expense.amount);    

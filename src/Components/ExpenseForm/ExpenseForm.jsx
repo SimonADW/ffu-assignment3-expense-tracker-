@@ -10,12 +10,11 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 		this.id = Date.now()
 		this.getDate = function() {
 			const dateObject = new Date();
-			const year = dateObject.getFullYear();
+			const year = dateObject.getFullYear().toString();
 			const month = dateObject.getMonth() + 1;
 			const monthPadded = month.toString().padStart(2, 0)
-			const date = dateObject.getDate();
+			const date = dateObject.getDate().toString();
 			return `${year}-${monthPadded}-${date}`;
-
 		}
 	}
 
