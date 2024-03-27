@@ -8,8 +8,15 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 		this.title = title,
 		this.category = category,
 		this.id = Date.now()
-		this.dateObject = new Date(),
-		this.date = `${this.dateObject.getFullYear()}-${this.dateObject.getMonth() +1 }-${this.dateObject.getDate()}`
+		this.getDate = function() {
+			const dateObject = new Date();
+			const year = dateObject.getFullYear();
+			const month = dateObject.getMonth() + 1;
+			const monthPadded = month.toString().padStart(2, 0)
+			const date = dateObject.getDate();
+			return `${year}-${monthPadded}-${date}`;
+
+		}
 	}
 
 	function handleSubmit(event) {
@@ -26,17 +33,17 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 				
 			<div>
 				<label htmlFor="amount" className={styles.amountLabel}>Expense amount</label>
-				<input type="text" name="amount" className="amountInput" autoFocus/>
+				<input type="number" name="amount" className="amountInput" tabIndex={1} autoFocus/>
 			</div>
 
 			<div>
 				<label htmlFor="title" className={styles.titleLabel}>Expense title</label>
-				<input type="text" name="title" className="titleInput" />
+				<input type="text" name="title" className="titleInput" tabIndex={2} />
 			</div>
 
 			<div>
 				<label htmlFor="category" className={styles.categoryLabel}>Expense Category</label>
-				<select name="category" id="" className="categoryInput">
+				<select name="category" id="" className="categoryInput" tabIndex={3}>
 					<option value="groceries">Groceries</option>
 					<option value="housing">Housing</option>
 					<option value="transportation">Transportation</option>

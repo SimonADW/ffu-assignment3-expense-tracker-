@@ -82,8 +82,8 @@ function App() {
           )}
         </section>
 
-        <footer className="footer">2024 © SpendingFrenzy A/S</footer>
-      </main>
+      <footer className="footer">2024 © SpendingFrenzy A/S</footer>
+      </main>      
     </>
   );
 }

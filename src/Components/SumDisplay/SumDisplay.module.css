@@ -1,41 +1,39 @@
-
 .sumDisplaySection {
-	width: 100%;
-	max-width: 22.5rem;
-	height: 12rem;
+  width: 100%;
+  padding: 0.5rem;
+}
 
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	margin-left: auto;
-	padding: 1rem;
-	border-radius: 0.6rem;
-	color: var(--background);
-	background: linear-gradient(180deg, var(--color-button), #7A1A53);
-	
+.sumWrapper {
+  width: 100%;
+  max-width: 100%;
+  height: 12rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+  padding: 1rem;
+
+  border-radius: 0.6rem;
+  color: var(--background);
+  background: linear-gradient(180deg, var(--color-button), #7a1a53);
 }
 
 .sumDisplaySection div:nth-child(1) {
-	align-self: end;
+  align-self: end;
 }
 
 .todaySum {
-	text-align: end;
-	font-size: 24px;
+  text-align: end;
+  font-size: 24px;
 }
 
 .totalSum {
-	font-size: 30px;
+  font-size: 30px;
 }
 
-.todaySum {
-	
-}
-
-@media screen and (max-width: 500px ) {
-	.sumDisplaySection {		
-		max-width: 100%;
-		
-	}
-	
+@media screen and (min-width: 500px) {
+  .sumWrapper {
+    max-width: 22.5rem;
+  }
 }

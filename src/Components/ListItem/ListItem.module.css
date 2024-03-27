@@ -23,6 +23,7 @@
 	width: 1.8rem;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 .deleteButton svg path {
@@ -38,4 +39,8 @@
 	border-radius: 50%;
 	padding: 0.2rem;
 	background: var(--color-primary);
+}
+
+.li__date {
+	margin-right: 0.5rem;
 }

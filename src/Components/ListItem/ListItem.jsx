@@ -15,14 +15,14 @@ export default function ListItem({currentItem, deleteExpense}) {
     <>
           {/* LEFT SECTION OF ITEM */}
       <li className={styles.listItem} data-id={currentItem.id} >
-        <span className="liLeft">
-          <span className="li__icon">
+        <span>
+          <span>
 		        <img className={styles.categoryIcon} src={`${currentItem.category}.svg`} alt="" />	
           </span>
 
-          <span className="li__date">{currentItem.date}</span>
+          <span className={styles.li__date}>{window.innerWidth > 500 ? currentItem.getDate() : currentItem.getDate().substr(5)}</span>
 
-          <span className="li__title">{currentItem.title}</span>
+          <span className={styles.li__title}>{currentItem.title}</span>
         </span>
 
          {/* RIGHT SECTION OF ITEM */}

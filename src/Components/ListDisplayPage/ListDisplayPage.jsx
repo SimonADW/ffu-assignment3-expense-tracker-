@@ -3,8 +3,6 @@ import style from "./ListDisplayPage.module.css"
 
 export default function ListDisplayPage({formStateSetter, expenses, deleteExpense}) {
 	
-
-
 	return <>
 		<ul>
 			{
