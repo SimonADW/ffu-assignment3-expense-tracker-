@@ -14,11 +14,11 @@ function App() {
 
   // DISPLAY SUMS IN HEADER
   const summarizeExpenses = () => {
-    for (let expense of expenseArray) {
-      setTotalSum(0)
-      setTotalSum((prev) => prev + Number(expense.amount));
-      console.log(totalSum);
+    let currentSum =  0;
+    for (let expense of expenseArray) {        
+      currentSum = currentSum + Number(expense.amount);      
     }
+    setTotalSum(currentSum)
   };
 
   const getTodaysSpending = () => {
@@ -26,9 +26,11 @@ function App() {
     const date = `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
     const todaysExpensesArray = expenseArray.filter((expense) => date === expense.date);
 
+    let currentDaySum = 0
     for (let expense of todaysExpensesArray) {
-      setDaySum(daySum + Number(expense.amount));
+      currentDaySum = currentDaySum + Number(expense.amount);    
     }
+    setDaySum(currentDaySum);
   };
 
   useEffect(() => {
@@ -68,8 +70,7 @@ function App() {
             <ExpenseForm
               expenses={expenseArray}
               handleExpense={handleExpense}
-              formStateSetter={setIsFormOpen}
-              handleSum={summarizeExpenses}
+              formStateSetter={setIsFormOpen}              
             />
           ) : (
             <ListDisplayPage
