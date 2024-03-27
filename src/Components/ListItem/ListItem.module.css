@@ -27,6 +27,11 @@
 
 .deleteButton svg path {
 	fill: var(--color-primary);
+	pointer-events: none;
+}
+
+.deleteButton svg {
+	pointer-events: none;
 }
 
 .categoryIcon {

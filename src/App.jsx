@@ -6,8 +6,8 @@ import "./App.css";
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [expenseArray, setExpenseArray] = useState(
-    window.localStorage.getItem(JSON.stringify("expenses")) || []
+  const [expenseArray, setExpenseArray] = useState( []
+    // window.localStorage.getItem(JSON.stringify("expenses")) || []
   );
   const [totalSum, setTotalSum] = useState(0);
   const [daySum, setDaySum] = useState(0);
@@ -15,7 +15,8 @@ function App() {
   // DISPLAY SUMS IN HEADER
   const summarizeExpenses = () => {
     for (let expense of expenseArray) {
-      setTotalSum(totalSum + Number(expense.amount));
+      setTotalSum(0)
+      setTotalSum((prev) => prev + Number(expense.amount));
       console.log(totalSum);
     }
   };
@@ -42,6 +43,19 @@ function App() {
     // window.localStorage.setItem("expenses", JSON.parse(expenseArray))
   };
 
+  // DELETE EXPENSE
+  const deleteExpense = (event)=> {    
+    const indexToRemove = expenseArray.findIndex((expense)=> expense.id.toString() === event.target.parentElement.parentElement.parentElement.dataset.id);
+    console.log(expenseArray);
+    
+    //UPDATE ARRAY AFTER DELETE
+    setExpenseArray((prev) => {
+      const expensesClone = [...prev];
+      expensesClone.splice(indexToRemove, 1);
+      return expensesClone;
+    });
+  }
+
   return (
     <>
       <main className="body">
@@ -62,6 +76,7 @@ function App() {
               expenses={expenseArray}
               handleExpense={handleExpense}
               formStateSetter={setIsFormOpen}
+              deleteExpense={deleteExpense}
             />
           )}
         </section>
