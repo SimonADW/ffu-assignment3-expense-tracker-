@@ -11,6 +11,8 @@ function App() {
   );
   const [totalSum, setTotalSum] = useState(0);
   const [daySum, setDaySum] = useState(0);
+  
+
 
   // DISPLAY SUMS IN HEADER
   const summarizeExpenses = () => {
@@ -75,7 +77,7 @@ function App() {
             <ExpenseForm
               expenses={expenseArray}
               handleExpense={handleExpense}
-              formStateSetter={setIsFormOpen}              
+              formStateSetter={setIsFormOpen}                        
             />
           ) : (
             <ListDisplayPage
