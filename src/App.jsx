@@ -5,7 +5,7 @@ import ListDisplayPage from "./Components/ListDisplayPage/ListDisplayPage";
 import "./App.css";
 
 function App() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState();
   const [expenseArray, setExpenseArray] = useState( []
     // window.localStorage.getItem(JSON.stringify("expenses")) || []
   );
