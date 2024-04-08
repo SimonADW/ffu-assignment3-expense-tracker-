@@ -7,8 +7,7 @@ import { useState } from "react";
 export default function ExpenseForm({formStateSetter, handleExpense}) {
 	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
 	const [formValues, setFormValues] = useState({amount: "", title: "", category: ""})
-	
-	
+		
 	function CreateExpense(amount, title, category) {
 		this.amount = amount, 
 		this.title = title,
