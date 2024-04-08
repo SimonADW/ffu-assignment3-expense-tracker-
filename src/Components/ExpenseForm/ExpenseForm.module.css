@@ -37,9 +37,12 @@
 }
 
 input, select {
-	height: 2.8rem;
-	width: 19rem;
-	margin-bottom: 1rem;
+	height: 2.5rem;
+	width: 19rem;	
+}
+
+.label {
+	margin-top: 1rem;
 }
 
 
@@ -52,7 +55,7 @@ input, select {
 	justify-content: center;
 	align-items: center;
 
-	margin: 0 auto;
+	margin: 1rem auto;
 	padding: 0.75rem 1.6875rem;
 	border-radius: 0.6rem;
 	color: var(--background);

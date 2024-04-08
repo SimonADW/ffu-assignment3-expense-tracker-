@@ -4,9 +4,10 @@ import closeImage from "../../assets/close.svg";
 import useForm from "../useForm";
 import validate from "../validateLogin";
 
-export default function ExpenseForm({formStateSetter, handleExpense}) {
-	console.log(formStateSetter);
-	// const [handleChange, handleSubmit, formValues, formErrors] = useForm(submit(event), validate)
+export default function ExpenseForm({formStateSetter, handleExpense, expenses}) {
+	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
+	const [formValues, setFormValues] = useState({amount: "", title: "", category: ""})
+	const [isValidated, setIsValidated] = useState(true);
 	
 	function CreateExpense(amount, title, category) {
 		this.amount = amount, 
@@ -29,6 +30,39 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 		handleExpense(expense)
 	}
 
+	const handleChange = (event)=> {
+		const { name, value } = event.target
+		setFormErrors((prev)=> ({...prev, [`${name}Error`]:""}))
+		setFormValues({
+			...formValues,
+			[name]: value
+		})
+	}
+
+	// FORM VALIDATION
+	function validateForm(event) {
+		let isValid = true;
+		let clonedErrors = {...formErrors}
+		event.preventDefault();
+		if(!formValues.amount.trim()) {
+			clonedErrors.amountError = "Amount is required";
+			isValid = false;
+		} else if (formValues.amount.trim().length > 6) {			
+			clonedErrors.amountError = "Max amount is 999.999,-"
+			isValid = false;			
+		}
+		
+		if(!formValues.title.trim()) {
+			clonedErrors.titleError = "Title is required";
+			isValid = false;			
+		} else if(formValues.title.trim().length > 20){
+			clonedErrors.titleError = "Max characters is 20";
+			isValid = false;			
+		}
+		setFormErrors(clonedErrors);
+		setIsValidated(isValid);
+		isValid && handleSubmit(event);
+	}
 
 	return <>
 		<form className={styles.expenseForm} onSubmit={validate} action="">
@@ -37,14 +71,14 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 				
 			<div>
 				<label htmlFor="amount" className={styles.amountLabel}>Expense amount</label>
-				<input type="number" name="amount" onChange={handleChange} value={formValues.amount} name="amount" className="amountInput" tabIndex={1} autoFocus/>
-				{formErrors.amount && <p>{formErrors.amount}</p>}
+				<input type="number" onChange={handleChange} value={formValues.amount} name="amount" className="amountInput" tabIndex={1} autoFocus/>
+				<p className={styles.errorMessage}>{formErrors.amountError}</p>
 			</div>
 
 			<div>
 				<label htmlFor="title" className={styles.titleLabel}>Expense title</label>
-				<input type="text" name="title" onChange={handleChange} value={formValues.title} name="title" className="titleInput" tabIndex={2} />
-				{formErrors.title && <p>{formErrors.title}</p>}
+				<input type="text" onChange={handleChange} value={formValues.title} name="title" className="titleInput" tabIndex={2} />
+				<p className={styles.errorMessage}>{formErrors.titleError}</p>
 			</div>
 
 			<div>
@@ -57,8 +91,6 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 					<option value="other">Other</option>
 				</select>
 			</div>
-
-			<div className={styles.errorMessage}></div>
 
 			<button className={styles.submitExpenseButton}>Submit Expense</button>		
 		</form>
