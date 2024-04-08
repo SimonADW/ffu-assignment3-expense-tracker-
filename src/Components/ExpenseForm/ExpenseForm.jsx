@@ -3,7 +3,7 @@ import styles from "./ExpenseForm.module.css"
 import closeImage from "../../assets/close.svg"
 
 export default function ExpenseForm({formStateSetter, handleExpense, expenses}) {
-	const [formError, setFormError] = useState();
+	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
 	const [formValues, setFormValues] = useState({amount: "", title: "", category: ""})
 	
 	function CreateExpense(amount, title, category) {
@@ -28,6 +28,7 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 
 	const handleChange = (event)=> {
 		const { name, value } = event.target
+		setFormErrors((prev)=> ({...prev, [`${name}Error`]: ""}))
 		setFormValues({
 			...formValues,
 			[name]: value
@@ -37,28 +38,25 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 	// FORM VALIDATION
 	function validateForm(event) {
 		event.preventDefault();
-		const amountInput = event.target[1].value
-		const titleInput = event.target[2].value
-		let isValidated = true;
-
-		if(!amountInput && !titleInput) {
-			isValidated = false
-			setFormError("Please enter amount and title")
-
-		} else if (!titleInput) {
-			isValidated = false			
-			setFormError("Please enter title")			
-		} else if(!amountInput) {
-			setFormError("Please enter amount")
-			isValidated = false			
-		} else {
-			isValidated = true
-			setFormError("")
+		let isValid = true;
+		const clondedErrors = {...formErrors};
+		if(!formValues.amount.trim()) {
+			clondedErrors.amountError = "Amount is required";
+			isValid = false;
+		} else if(formValues.amount.trim().length > 8) {
+			clondedErrors.amountError = "Max amount is 999.999,-";
+			isValid = false;
 		}
 		
-		if (isValidated) {
-			handleSubmit(event)
+		if(!formValues.title.trim()) {
+			clondedErrors.titleError = "Title is required";
+			isValid = false;
+		} else if(formValues.title.trim().length > 20) {
+			clondedErrors.titleError = "Max characters exceeded";
+			isValid = false;
 		}
+		setFormErrors(clondedErrors);
+		isValid && handleSubmit(event);
 	}
 
 	return <>
@@ -69,11 +67,13 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 			<div>
 				<label htmlFor="amount" className={styles.amountLabel}>Expense amount</label>
 				<input type="number" onChange={handleChange} value={formValues.amount} name="amount" className="amountInput" tabIndex={1} autoFocus/>
+				<div className={styles.errorMessage}>{formErrors.amountError}</div>
 			</div>
 
 			<div>
 				<label htmlFor="title" className={styles.titleLabel}>Expense title</label>
 				<input type="text" onChange={handleChange} value={formValues.title} name="title" className="titleInput" tabIndex={2} />
+				<div className={styles.errorMessage}>{formErrors.titleError}</div>
 			</div>
 
 			<div>
@@ -83,11 +83,9 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 					<option value="housing">Housing</option>
 					<option value="transportation">Transportation</option>
 					<option value="clothing">Clothing</option>
-					<option value="other">Other</option>
+					<option value="other" selected>Other</option>
 				</select>
 			</div>
-
-			<div className={styles.errorMessage}>{formError}</div>
 
 			<button className={styles.submitExpenseButton}>Submit Expense</button>		
 		</form>
