@@ -24,7 +24,7 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 		}
 	}
 
-	function submit(event) {
+	function handleSubmit(event) {
 		const expense = new CreateExpense(event.target[1].value, event.target[2].value, event.target[3].value) 
 		handleSubmit()
 		handleExpense(expense)
