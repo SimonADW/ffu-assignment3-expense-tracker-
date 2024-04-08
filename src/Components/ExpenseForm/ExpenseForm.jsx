@@ -3,8 +3,10 @@ import styles from "./ExpenseForm.module.css";
 import closeImage from "../../assets/close.svg";
 import useForm from "../useForm";
 import validate from "../validateLogin";
+import { useState } from "react";
 
-export default function ExpenseForm({formStateSetter, handleExpense, expenses}) {
+
+export default function ExpenseForm({formStateSetter, handleExpense}) {
 	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
 	const [formValues, setFormValues] = useState({amount: "", title: "", category: ""})
 	const [isValidated, setIsValidated] = useState(true);
@@ -26,7 +28,6 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 
 	function handleSubmit(event) {
 		const expense = new CreateExpense(event.target[1].value, event.target[2].value, event.target[3].value) 
-		handleSubmit()
 		handleExpense(expense)
 	}
 
@@ -65,7 +66,7 @@ export default function ExpenseForm({formStateSetter, handleExpense, expenses}) 
 	}
 
 	return <>
-		<form className={styles.expenseForm} onSubmit={validate} action="">
+		<form className={styles.expenseForm} onSubmit={validateForm} action="">
 		<button onClick={()=>formStateSetter(false)} className={styles.closeFormButton}><img src={closeImage} alt="" /></button>
 			<legend><h3>ADD EXPENSE</h3></legend>
 				
