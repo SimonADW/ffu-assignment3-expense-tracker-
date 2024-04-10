@@ -18,7 +18,7 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 			const year = dateObject.getFullYear().toString();
 			const month = dateObject.getMonth() + 1;
 			const monthPadded = month.toString().padStart(2, 0)
-			const date = dateObject.getDate().toString();
+			const date = dateObject.getDate().toString().padStart(2, 0);
 			return `${year}-${monthPadded}-${date}`;
 		}
 	}

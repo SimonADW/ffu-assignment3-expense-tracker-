@@ -29,7 +29,7 @@ function App() {
     const year = dateObject.getFullYear().toString();
     const month = dateObject.getMonth() + 1;
     const monthPadded = month.toString().padStart(2, 0)
-    const date = dateObject.getDate().toString();    
+    const date = dateObject.getDate().toString().padStart(2, 0);    
     const dateString = `${year}-${monthPadded}-${date}`
     
     const todaysExpensesArray = expenseArray.filter((expense) => dateString === expense.getDate());
@@ -72,7 +72,7 @@ function App() {
           <SumDisplay totalSum={totalSum} daySum={daySum} />
         </header>
 
-        <section>
+        <section className="main-section">
           {isFormOpen ? (
             <ExpenseForm
               expenses={expenseArray}
