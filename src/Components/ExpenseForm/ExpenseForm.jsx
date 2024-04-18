@@ -23,8 +23,9 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 		}
 	}
 
-	function handleSubmit(event) {
-		const expense = new CreateExpense(event.target[1].value, event.target[2].value, event.target[3].value) 
+	function handleSubmit() {
+		const { amount, title, category } = formValues;
+		const expense = new CreateExpense(amount, title, category) 
 		handleExpense(expense)
 	}
 
@@ -59,12 +60,12 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 			isValid = false;
 		}
 		setFormErrors(clondedErrors);
-		isValid && handleSubmit(event);
+		isValid && handleSubmit();
 	}
 
 	return <>
 		<form className={styles.expenseForm} onSubmit={validateForm} action="">
-		<button onClick={()=>formStateSetter(false)} className={styles.closeFormButton}><img src={closeImage} alt="" /></button>
+			<button type="button" onClick={()=>formStateSetter(false)} className={styles.closeFormButton}><img src={closeImage} alt="" /></button>
 			<legend><h3>ADD EXPENSE</h3></legend>
 				
 			<div>
@@ -90,7 +91,7 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 				</select>
 			</div>
 
-			<button className={styles.submitExpenseButton}>Submit Expense</button>		
+			<button type="submit" className={styles.submitExpenseButton}>Submit Expense</button>		
 		</form>
 	</>
 }
