@@ -4,35 +4,30 @@ import closeImage from "../../assets/close.svg";
 import { useState } from "react";
 
 
-export default function ExpenseForm({formStateSetter, handleExpense}) {
+export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDate}) {
 	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
 	const [formValues, setFormValues] = useState({amount: "", title: "", category: ""})
 		
-	function CreateExpense(amount, title, category) {
-		this.amount = amount, 
-		this.title = title,
-		this.category = category,
-		this.id = Date.now()
-		this.getDate = function() {
-			const dateObject = new Date();
-			const year = dateObject.getFullYear().toString();
-			const month = dateObject.getMonth() + 1;
-			const monthPadded = month.toString().padStart(2, 0)
-			const date = dateObject.getDate().toString().padStart(2, 0);
-			return `${year}-${monthPadded}-${date}`;
+	function createExpense(amount, title, category) {
+		return {
+			amount: amount, 
+			title: title,
+			category: category,
+			id: Date.now(),
+			expenseDate: getTodaysDate()
 		}
 	}
 
 	function handleSubmit() {
 		const { amount, title, category } = formValues;
-		const expense = new CreateExpense(amount, title, category) 
+		const expense = createExpense(amount, title, category) 
 		handleExpense(expense)
+		console.log(expense);
 	}
 
 	const handleChange = (event)=> {
 		const { name, value } = event.target
 		setFormErrors((prev)=> ({...prev, [`${name}Error`]:""}))
-		setFormErrors((prev)=> ({...prev, [`${name}Error`]: ""}))
 		setFormValues({
 			...formValues,
 			[name]: value
@@ -82,12 +77,12 @@ export default function ExpenseForm({formStateSetter, handleExpense}) {
 
 			<div>
 				<label htmlFor="category" className={styles.categoryLabel}>Expense Category</label>
-				<select name="category" id="" onChange={handleChange} className="categoryInput" tabIndex={3}>
+				<select name="category" id="" onChange={handleChange} className="categoryInput" defaultValue="other" tabIndex={3}>
 					<option value="groceries">Groceries</option>
 					<option value="housing">Housing</option>
 					<option value="transportation">Transportation</option>
 					<option value="clothing">Clothing</option>
-					<option value="other" selected>Other</option>
+					<option value="other">Other</option>
 				</select>
 			</div>
 

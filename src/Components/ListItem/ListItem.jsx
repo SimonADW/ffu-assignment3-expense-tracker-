@@ -9,7 +9,8 @@ import styles from "./ListItem.module.css"
 
 
 
-export default function ListItem({currentItem, deleteExpense}) {
+export default function ListItem({currentItem, deleteExpense, getTodaysDate}) {
+
 
   return (
     <>
@@ -20,7 +21,7 @@ export default function ListItem({currentItem, deleteExpense}) {
 		        <img className={styles.categoryIcon} src={`${currentItem.category}.svg`} alt="" />	
           </span>
 
-          <span className={styles.li__date}>{window.innerWidth > 500 ? currentItem.getDate() : currentItem.getDate().substr(5)}</span>
+          <span className={styles.li__date}>{window.innerWidth > 500 ? currentItem.expenseDate : currentItem.expenseDate.substr(5)}</span>
 
           <span className={styles.li__title}>{currentItem.title}</span>
         </span>
