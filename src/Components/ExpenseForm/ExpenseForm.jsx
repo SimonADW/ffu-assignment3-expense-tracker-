@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDate}) {
 	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
-	const [formValues, setFormValues] = useState({amount: "", title: "", category: ""})
+	const [formValues, setFormValues] = useState({amount: "", title: "", category: "other"})
 		
 	function createExpense(amount, title, category) {
 		return {
@@ -18,11 +18,13 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 		}
 	}
 
+	
 	function handleSubmit() {
 		const { amount, title, category } = formValues;
 		const expense = createExpense(amount, title, category) 
 		handleExpense(expense)
 		console.log(expense);
+		console.log(formValues);
 	}
 
 	const handleChange = (event)=> {
@@ -77,12 +79,12 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 
 			<div>
 				<label htmlFor="category" className={styles.categoryLabel}>Expense Category</label>
-				<select name="category" id="" onChange={handleChange} className="categoryInput" defaultValue="other" tabIndex={3}>
+				<select name="category" id="" onChange={handleChange} className="categoryInput" tabIndex={3}>
 					<option value="groceries">Groceries</option>
 					<option value="housing">Housing</option>
 					<option value="transportation">Transportation</option>
 					<option value="clothing">Clothing</option>
-					<option value="other">Other</option>
+					<option value="other" selected >Other</option>
 				</select>
 			</div>
 

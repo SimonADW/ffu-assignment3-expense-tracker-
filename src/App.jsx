@@ -95,6 +95,7 @@ function App() {
             <ListDisplayPage
               getTodaysDate={getTodaysDate}
               expenses={expenseArray}
+              setExpenseArray={setExpenseArray}
               handleExpense={handleExpense}
               formStateSetter={setIsFormOpen}
               deleteExpense={deleteExpense}

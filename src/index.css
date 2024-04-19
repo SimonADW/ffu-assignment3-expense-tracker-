@@ -14,11 +14,20 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0;  
 }
 
 button {
   background: #C60F7B;
   border-style: none;
-  border-radius: 50%
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #a90c68;
+}
+
+button:active {
+  background: #6c0742;
 }

@@ -15,6 +15,8 @@ main {
 }
 
 .main-section {
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 	padding: 0.5rem;
 }
@@ -28,6 +30,7 @@ main {
 	justify-content: center;
 	align-self: center;
 
+	font-size: 12px;
 	background: var(--color-primary);
 }
 

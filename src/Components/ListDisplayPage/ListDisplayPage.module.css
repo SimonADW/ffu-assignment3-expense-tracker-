@@ -11,8 +11,18 @@
   color: var(--color-primary);
 }
 
+.resetButton {
+  width: 5rem;
+  height: 1.5rem;
+	border-radius: 0.6rem;
+  color: white;
+  margin-left: auto;  
+}
+
+
 /* @media screen and (min-width: 500px ) {
 	.addExpenseButton {						
 		top: 35%;				
 	}
 } */
+
