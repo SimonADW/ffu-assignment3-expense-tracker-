@@ -1,9 +1,3 @@
-// import groceries from "../../assets/groceries.svg"
-// import clothing from "../../assets/clothing.svg"
-// import transportation from "../../assets/transportation.svg"
-// import housing from "../../assets/housing.svg"
-// import other from "../../assets/other.svg"
-// import trash from "../../assets/trash.svg"
 
 import styles from "./ListItem.module.css"
 

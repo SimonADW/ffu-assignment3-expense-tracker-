@@ -9,12 +9,13 @@ function App() {
   const [totalSum, setTotalSum] = useState(0);
   const [daySum, setDaySum] = useState(0);
   const [expenseArray, setExpenseArray] = useState(
-    //   () => {
-    //   const storedExpenses = window.localStorage.getItem("expenses");
-    //   return storedExpenses ? JSON.parse(storedExpenses) : [];
-    // }
-    []
+      () => {
+      const storedExpenses = window.localStorage.getItem("expenses");
+      return storedExpenses ? JSON.parse(storedExpenses) : [];
+    }
   );
+
+  console.log(expenseArray);
 
   // GET TODAYS DATE IN ISOFORMAT
   const getTodaysDate = () => {
@@ -47,7 +48,7 @@ function App() {
   };
 
   useEffect(() => {
-    // window.localStorage.setItem("expenses", JSON.stringify(expenseArray));
+    window.localStorage.setItem("expenses", JSON.stringify(expenseArray));
     summarizeExpenses();
     getTodaysSpending();
   }, [expenseArray]);
