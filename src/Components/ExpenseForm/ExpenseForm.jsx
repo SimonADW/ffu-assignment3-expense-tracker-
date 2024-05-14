@@ -6,25 +6,23 @@ import { useState } from "react";
 
 export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDate}) {
 	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
-	const [formValues, setFormValues] = useState({amount: "", title: "", category: "other"})
+	const [formValues, setFormValues] = useState({amount: "", title: "", date: "", category: "other"})
 		
-	function createExpense(amount, title, category) {
+	function createExpense(amount, title, date, category) {
 		return {
 			amount: amount, 
 			title: title,
 			category: category,
 			id: Date.now(),
-			expenseDate: getTodaysDate()
+			expenseDate: date
 		}
 	}
 
 	
 	function handleSubmit() {
-		const { amount, title, category } = formValues;
-		const expense = createExpense(amount, title, category) 
-		handleExpense(expense)
-		console.log(expense);
-		console.log(formValues);
+		const { amount, title, date, category } = formValues;
+		const expense = createExpense(amount, title, date, category) 
+		handleExpense(expense)		
 	}
 
 	const handleChange = (event)=> {
@@ -33,7 +31,7 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 		setFormValues({
 			...formValues,
 			[name]: value
-		})
+		})		
 	}
 
 	// FORM VALIDATION
@@ -56,6 +54,12 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 			clondedErrors.titleError = "Max characters exceeded";
 			isValid = false;
 		}
+
+		if(!formValues.date.trim()) {
+			clondedErrors.dateError = "Date is required";
+			isValid = false;
+		}
+
 		setFormErrors(clondedErrors);
 		isValid && handleSubmit();
 	}
@@ -78,8 +82,15 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 			</div>
 
 			<div>
+				<label htmlFor="date" className={styles.titleLabel}>Expense date</label>
+				<input type="date" onChange={handleChange} value={formValues.date} name="date" className="dateInput" tabIndex={3} />
+				<div className={styles.errorMessage}>{formErrors.dateError}</div>
+			</div>
+
+
+			<div>
 				<label htmlFor="category" className={styles.categoryLabel}>Expense Category</label>
-				<select name="category" id="" onChange={handleChange} className="categoryInput" tabIndex={3}>
+				<select name="category" id="" onChange={handleChange} className="categoryInput" tabIndex={4}>
 					<option value="groceries">Groceries</option>
 					<option value="housing">Housing</option>
 					<option value="transportation">Transportation</option>
