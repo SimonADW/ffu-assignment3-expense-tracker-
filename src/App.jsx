@@ -14,9 +14,7 @@ function App() {
       return storedExpenses ? JSON.parse(storedExpenses) : [];
     }
   );
-
-  console.log(expenseArray);
-
+  
   // GET TODAYS DATE IN ISOFORMAT
   const getTodaysDate = () => {
     const dateObject = new Date();
@@ -66,8 +64,7 @@ function App() {
         expense.id.toString() ===
         event.target.parentElement.parentElement.parentElement.dataset.id
     );
-    console.log(expenseArray);
-
+    
     //UPDATE ARRAY AFTER DELETE
     setExpenseArray((prev) => {
       const expensesClone = [...prev];
