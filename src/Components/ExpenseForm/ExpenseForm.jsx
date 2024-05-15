@@ -1,13 +1,21 @@
 
 import styles from "./ExpenseForm.module.css";
 import closeImage from "../../assets/close.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDate}) {
+
+export default function ExpenseForm({formStateSetter, handleExpense}) {
 	const [formErrors, setFormErrors] = useState({amountError: "", titleError: ""});
 	const [formValues, setFormValues] = useState({amount: "", title: "", date: "", category: "other"})
-		
+	
+	// GET DATE FOR DATEPICKER
+	useEffect(()=> {
+		const todaysDate = new Date();
+		const todayIsoDate = todaysDate.toISOString().split("T")[0];
+		setFormValues((prev)=> ({...prev, date:todayIsoDate}));
+	}, [])
+			
 	function createExpense(amount, title, date, category) {
 		return {
 			amount: amount, 
@@ -17,7 +25,6 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 			expenseDate: date
 		}
 	}
-
 	
 	function handleSubmit() {
 		const { amount, title, date, category } = formValues;
@@ -95,11 +102,12 @@ export default function ExpenseForm({formStateSetter, handleExpense, getTodaysDa
 					<option value="housing">Housing</option>
 					<option value="transportation">Transportation</option>
 					<option value="clothing">Clothing</option>
-					<option value="other" selected >Other</option>
+					<option value="other" selected>Other</option>
 				</select>
 			</div>
 
 			<button type="submit" className={styles.submitExpenseButton}>Submit Expense</button>		
 		</form>
+	
 	</>
 }

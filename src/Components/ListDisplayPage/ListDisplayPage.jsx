@@ -19,7 +19,8 @@ export default function ListDisplayPage({formStateSetter, expenses, setExpenseAr
 		}
 
 		{/* ADD TODO BUTTON */}
-		<button onClick={()=>formStateSetter(true)} className={style.addExpenseButton}>+</button>
+		<button data-tooltip-id="expense-app-tooltip" data-tooltip-content="Add expense" onClick={()=>formStateSetter(true)} className={style.addExpenseButton}>+</button>
+		
 	</>
 
 

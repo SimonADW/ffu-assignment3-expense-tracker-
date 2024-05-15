@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SumDisplay from "./Components/SumDisplay/SumDisplay";
 import ExpenseForm from "./Components/ExpenseForm/ExpenseForm";
 import ListDisplayPage from "./Components/ListDisplayPage/ListDisplayPage";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from "react-tooltip";
 import "./App.css";
 
 function App() {
@@ -98,6 +100,8 @@ function App() {
               deleteExpense={deleteExpense}
             />
           )}
+
+          <Tooltip id="expense-app-tooltip"/>
         </section>
 
         <footer className="footer">2024 © SpendingFrenzy A/S</footer>
